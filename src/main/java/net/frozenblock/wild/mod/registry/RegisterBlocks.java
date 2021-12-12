@@ -42,7 +42,7 @@ public class RegisterBlocks {
     public static final RegistryObject<Block> MUD_BRICKS_SLAB = BLOCKS.register("mud_brick_slab", () -> new SlabBlock(MUD_BRICK_SETTINGS));
     public static final RegistryObject<Item> MUD_BRICKS_SLAB_ITEM = ITEMS.register("mud_brick_slab", () -> new BlockItem(MUD_BRICKS_SLAB.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 
-    public static final RegistryObject<Block> MUD_BRICKS_STAIRS = BLOCKS.register("mud_brick_stairs", () -> new SlabBlock(MUD_BRICK_SETTINGS));
+    public static final RegistryObject<Block> MUD_BRICKS_STAIRS = BLOCKS.register("mud_brick_stairs", () -> new StairBlock(Blocks.OAK_STAIRS.defaultBlockState(), MUD_BRICK_SETTINGS));
     public static final RegistryObject<Item> MUD_BRICKS_STAIRS_ITEM = ITEMS.register("mud_brick_stairs", () -> new BlockItem(MUD_BRICKS_STAIRS.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 
     public static final RegistryObject<Block> SCULK = BLOCKS.register("sculk", () -> new Block(SCULK_SETTINGS));

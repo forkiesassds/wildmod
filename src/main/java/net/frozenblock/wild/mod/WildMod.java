@@ -31,6 +31,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -59,6 +60,7 @@ public class WildMod
             ItemBlockRenderTypes.setRenderLayer(RegisterBlocks.SCULK_SHRIEKER.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(MangroveWoods.MANGROVE_PROPAGULE.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(MangroveWoods.MANGROVE_LEAVES.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(MangroveWoods.MANGROVE_ROOTS.get(), RenderType.cutout());
         });
     }
 
@@ -83,9 +85,19 @@ public class WildMod
     // Event bus for receiving Registry Events)
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
 
+        @SubscribeEvent
+        public static void registerBlockColors(ColorHandlerEvent.Block event) {
+            event.getBlockColors().register((p_92626_, p_92627_, p_92628_, p_92629_) -> {
+                return p_92627_ != null && p_92628_ != null ? BiomeColors.getAverageFoliageColor(p_92627_, p_92628_) : FoliageColor.getDefaultColor();
+            }, MangroveWoods.MANGROVE_LEAVES.get());
+        }
+
+        @SubscribeEvent
+        public static void registerItemColors(ColorHandlerEvent.Item event) {
+            event.getItemColors().register((p_92687_, p_92688_) -> {
+                return FoliageColor.getDefaultColor();
+            }, MangroveWoods.MANGROVE_LEAVES.get());
         }
     }
 }
